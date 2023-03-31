@@ -1,32 +1,44 @@
 #include "main.h"
 
 /**
- * get_flag - turns on flags if _printf finds
- * a flag modifier in the format string
- * @s: character that holds the flag specifier
- * @f: pointer to the struct flags in which we turn the flags on
- *
- * Return: 1 if a flag has been turned on, 0 otherwise
+ * _get_flg - set flags
+ * @format: flag format
+ * @flg: flag to set
+ * Return: 1 if flag is found, 0 otherwise
  */
-int get_flag(char s, flags_t *f)
+
+int _get_flg(char format, flag_t *flg)
 {
-	int i = 0;
-
-	switch (s)
+	if (format == '+')
 	{
-		case '+':
-			f->plus = 1;
-			i = 1;
-			break;
-		case ' ':
-			f->space = 1;
-			i = 1;
-			break;
-		case '#':
-			f->hash = 1;
-			i = 1;
-			break;
+		flg->plus = 1;
+		return (1);
 	}
-
-	return (i);
+	else if (format == ' ')
+	{
+		flg->space = 1;
+		return (1);
+	}
+	else if (format == '#')
+	{
+		flg->hash = 1;
+		return (1);
+	}
+	else if (format == '0')
+	{
+		flg->zero = 1;
+		return (1);
+	}
+	else if (format == '-')
+	{
+		flg->minus = 1;
+		return (1);
+	}
+	else if (format == '.')
+	{
+		flg->prec = 1;
+		return (1);
+	}
+	else
+		return (0);
 }
